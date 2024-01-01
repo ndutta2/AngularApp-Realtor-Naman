@@ -14,7 +14,7 @@ import { AddPropertyComponent } from './property/add-property/add-property.compo
 import {Routes, RouterModule} from '@angular/router';
 import { PropertyDetailComponent } from './property/property-detail/property-detail.component';
 //add form
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserRegisterComponent } from './user/user-register/user-register/user-register.component';
 import { UserLoginComponent } from './user/user-login/user-login/user-login.component';
 
@@ -46,6 +46,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     //add
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [
