@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { AuthService } from '../../../services/auth.service';
+import { AlertifyService } from '../../../services/alertify.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -9,10 +12,25 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class UserLoginComponent implements OnInit {
 
  
-  constructor() { }
+  constructor(private authService: AuthService,
+              private alertify: AlertifyService,
+              private router: Router) { }
 
   ngOnInit() {
    
+  }
+
+  OnLogin(loginForm: NgForm){
+    console.log(NgForm);
+    const token = this.authService.authUser(loginForm.value);
+    if(token){
+      localStorage.setItem('token',token.userName)
+      this.alertify.success('Login Successful');
+      this.router.navigate(['/']);
+    }
+    else{
+      this.alertify.error('Login Unsuccesful');
+    }
   }
 
 }
